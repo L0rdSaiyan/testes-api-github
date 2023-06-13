@@ -88,3 +88,14 @@ fetch(`https://api.github.com/users/${userName}`, {
   .catch((err) => {
     console.log(`Ocorreu um erro! ${err}`);
   });
+
+
+  fetch('https://swapi.dev/api/people/1/')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Faça o que quiser com os dados retornados
+  })
+  .catch(error => {
+    console.log('Ocorreu um erro:', error);
+  });
