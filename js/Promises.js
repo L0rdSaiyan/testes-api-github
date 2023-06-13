@@ -88,22 +88,22 @@ fetch(`https://api.github.com/users/${userName}`, {
     console.log(`Ocorreu um erro! ${err}`);
   });
 
+async function acharPersonagem() {
+  let personagem = document.querySelector("#charSW").value;
 
-function acharPersonagem(){
+  await fetch("https://swapi.dev/api/people/")
+    .then((response) => response.json())
+    .then((data) => {
+      const characterName = personagem;
+      const character = data.results.find(
+        (character) => character.name === characterName
+      );
 
-  let personagem = document.querySelector("#charSW").value
-
- fetch('https://swapi.dev/api/people/')
-  .then(response => response.json())
-  .then(data => {
-    const characterName = personagem
-    const character = data.results.find(character => character.name === characterName);
-    console.log(character);
-    // Faça o que quiser com os dados do personagem encontrado
-  })
-  .catch(error => {
-    console.log('Ocorreu um erro:', error);
-  });
-
+      console.log(character ?? "404");
+    })
+    .catch((error) => {
+      console.log("Ocorreu um erro:", error);
+    });
 }
 
+console.log("aoba");
