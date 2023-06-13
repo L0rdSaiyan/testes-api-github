@@ -78,7 +78,6 @@ fetch(`https://api.github.com/users/${userName}`, {
   },
 })
   .then((response) => {
-    console.log(typeof response);
     return response.json();
   })
   .then((data) => {
@@ -90,12 +89,21 @@ fetch(`https://api.github.com/users/${userName}`, {
   });
 
 
-  fetch('https://swapi.dev/api/people/1/')
+function acharPersonagem(){
+
+  let personagem = document.querySelector("#charSW").value
+
+ fetch('https://swapi.dev/api/people/')
   .then(response => response.json())
   .then(data => {
-    console.log(data);
-    // Faça o que quiser com os dados retornados
+    const characterName = personagem
+    const character = data.results.find(character => character.name === characterName);
+    console.log(character);
+    // Faça o que quiser com os dados do personagem encontrado
   })
   .catch(error => {
     console.log('Ocorreu um erro:', error);
   });
+
+}
+
